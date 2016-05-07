@@ -85,7 +85,7 @@ importScripts("config.js","sync.js");
 
 
 /* eslint-disable quotes, comma-spacing */
-var PrecacheConfig = [["/assets/demos/dog.png","5d1bebbbbe167f7f7899c58fce24b642"],["/index.html","f13b52886deae40c62eb689fcdb30c1e"],["/message.html","201fb648aa5d8c6f08cb198e4c9ad140"]];
+var PrecacheConfig = [["/css/styles.css","06531eb581be93d0641d627b2f72af32"],["/images/dog.png","5d1bebbbbe167f7f7899c58fce24b642"],["/images/dog155x155.png","09794e445d6a6be7f9cbf0009c2a556d"],["/index.html","8c536d26de33a0f975f4b99694654120"],["/js/redder.js","ac4fa3bbe44771dbe7aec2f74cc7a3f5"],["/message.html","f50459496ca85ed41a88c273240137b2"]];
 /* eslint-enable quotes, comma-spacing */
 var CacheNamePrefix = 'sw-precache-v1--' + (self.registration ? self.registration.scope : '') + '-';
 
@@ -301,8 +301,9 @@ self.addEventListener('fetch', function(event) {
 
 // Runtime cache configuration, using the sw-toolbox library.
 
-toolbox.router.get(/https:\/\/www\.reddit\.com\/r\/javascript\/comments\/\w{6}\/[\w]{0,255}\.json/, toolbox.cacheFirst, {"cache":{"name":"articles"}});
+toolbox.router.get(/https:\/\/www\.reddit\.com\/api\/subreddits_by_topic.json?query=javascript/, toolbox.cacheOnly, {"cache":{"name":"subreddits"}});
 toolbox.router.get(/https:\/\/www\.reddit\.com\/r\/\w{1,255}\.json/, toolbox.networkFirst, {"cache":{"name":"titles"}});
+toolbox.router.get(/https:\/\/www\.reddit\.com\/r\/javascript\/comments\/\w{6}\/[\w]{0,255}\.json/, toolbox.cacheFirst, {"cache":{"name":"articles"}});
 
 
 
